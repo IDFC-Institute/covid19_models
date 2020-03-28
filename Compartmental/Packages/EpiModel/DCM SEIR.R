@@ -7,7 +7,7 @@ SEIR <- function(t, t0, parms) {
     num <- s.num + e.num + i.num + r.num
     
     # Effective contact rate and FOI from a rearrangement of Beta * c * D
-    ce <- R0 / i.dur
+    ce <- R0 / i.dur           #Girish: no need to have pulled these out, I feel.
     lambda <- ce * i.num/num
     
     dS <- -lambda*s.num
@@ -28,10 +28,21 @@ SEIR <- function(t, t0, parms) {
   })
 }
 
-param <- param.dcm(R0 = 1.9, e.dur = 10, i.dur = 14, cfr = c(0.5, 0.7, 0.9))
-init <- init.dcm(s.num = 1e6, e.num = 10, i.num = 0, r.num = 0,
-                 se.flow = 0, ei.flow = 0, ir.flow = 0, d.flow = 0)
-control <- control.dcm(nsteps = 500, dt = 1, new.mod = SEIR)
+param <- param.dcm(R0 = 1.9,
+                   e.dur = 10,
+                   i.dur = 7,
+                   cfr = c(0.5, 0.7, 0.9))
+init <- init.dcm(s.num = 1e6,
+                 e.num = 10,
+                 i.num = 0,
+                   r.num = 0,
+                   se.flow = 0,
+                   ei.flow = 0,
+                   ir.flow = 0,
+                   d.flow = 0)
+control <- control.dcm(nsteps = 500,
+                       dt = 1,
+                       new.mod = SEIR)
 mod <- dcm(param, init, control)
 
 mod
