@@ -22,6 +22,6 @@ control <- control.dcm(type = "SIR",
 
 mod <- dcm(param, init, control)
 
-mod
+print(mod)
 
 plot(mod)

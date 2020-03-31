@@ -30,16 +30,16 @@ param <- param.dcm(inf.prob = 0.04,
                    act.rate = 20,
                    rec.rate = 1/15,
                    e.dur = 10)
-init <- init.dcm(s.num = 40000,
-                 e.num = 10,
-                 i.num = 50,
+init <- init.dcm(s.num = 30000000,
+                 e.num = 10000,
+                 i.num = 5000,
                  r.num = 0)
-control <- control.dcm(nsteps = 500,
+control <- control.dcm(nsteps = 50,
                        dt = 1,
                        new.mod = SEIR)
 mod <- dcm(param, init, control)
 
-mod
+print(mod)
 
 plot(mod, y="i.num")
 
